@@ -38,6 +38,10 @@ you to return a previously federated organization to its default managed state a
 
 **DISCLAIMER**: This script is provided "as-is" without any warranty of any kind, either expressed or implied.
 
+<sub>Click below for video demonstration (version 1.0 shown):<sub>
+ 
+[![Watch the video demonstration](https://i.imgur.com/uoyL9ek.png)](https://youtu.be/ecSAiq9g5P8)
+
 ## Prerequisites
 You will need to meet the following prequisites to make use of this script:
 
