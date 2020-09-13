@@ -1,9 +1,22 @@
-
+  
+##########################################################################
+# OATH authenticator import into Microsoft Azure AD                        
+##########################################################################
+# version: 1.0
+# last updated on: 2020-09-14
+# see readme.md for more info.
+#
+# NOTE: This script takes in the generic Thales authenticator seed file for 3rd
+# party use and manipulates it for compliance with current Microsoft OATH import 
+# requirements. In the script, the OTP110 authenticator is used, but the script 
+# can be easily modified to support the Thales OTP Display Card and others.
+#
+# LIMITATIONS/ KNOWN ISSUES: N/A
+#
 # ************************************************************************
 # DISCLAIMER: This script is provided "as-is" without any warranty of
 # any kind, either expressed or implied.
 # ************************************************************************
-
 
 # Import a decrypted base32 seed file in CSV format:
 Import-Csv C:\seeds.csv |
