@@ -1,6 +1,8 @@
 ### Table Of Contents
   * [AWS Federation with SafeNet Trusted Access (STA)](https://github.com/JMarkstrom/SafeNet-Trusted-Access/blob/master/README.md#aws-federation-with-safenet-trusted-access-sta)
   * [Office365 Federation with SafeNet Trusted Access (STA)](https://github.com/JMarkstrom/SafeNet-Trusted-Access/blob/master/README.md#office365-federation-with-safenet-trusted-access-sta)
+    * [OATH authenticator import into Microsoft Azure AD (using Thales OTP 110)](https://github.com/JMarkstrom/SafeNet-Trusted-Access/blob/master/README.md#office365-federation-with-safenet-trusted-access-sta)
+
 
 
 ## AWS Federation with SafeNet Trusted Access (STA)
@@ -56,3 +58,26 @@ To use the script simply run it in Powershell, e.g.: `.\STA_Federate_Office365.p
 
 ## Release History
 * 2019.11.21 `v1.0.0` Initial Release
+
+# OATH authenticator import into Microsoft Azure AD (using Thales OTP 110)
+
+*This script takes in the generic Thales authenticator seed file for 3rd party use and manipulates it
+for compliance with current Microsoft OATH import requirements.*
+
+**DISCLAIMER**: This script is provided "as-is" without any warranty of any kind, either expressed or implied.
+
+
+## Prerequisites
+You will need to meet the following prequisites to make use of this script.
+
+* Powershell is present on machine
+* Physical access to Thales OTP110 hardware authenticators
+* Access to decrypted base32 seed file in csv format
+* Administrator privileges on Office365 domain as well as Azure AD
+
+## Usage
+Edit the script to correct source and output folders then run the script.
+NOTE: Before importing to Microsoft Azure you must add user UPN's to the 'UPN' column.
+
+## Release History
+* 2020.09.13 `v1.0.0` Initial Release
