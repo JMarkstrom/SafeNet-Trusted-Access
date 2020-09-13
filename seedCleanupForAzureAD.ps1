@@ -3,7 +3,7 @@
 # OATH authenticator import into Microsoft Azure AD                        
 ##########################################################################
 # version: 1.0
-# last updated on: 2020-09-14
+# last updated on: 2020-09-13
 # see readme.md for more info.
 #
 # NOTE: This script takes in the generic Thales authenticator seed file for 3rd
