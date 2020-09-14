@@ -18,9 +18,13 @@
 # any kind, either expressed or implied.
 # ************************************************************************
 
+##########################################################################
+# Settings:
+$inputFile = "C:\seeds.csv" # Replace with path to decrypted csv file
+
 # This function gets called to create a new CSV file for Microsoft Azure AD:
 Function formatForAzure {
-    Import-Csv C:\seeds.csv |
+    Import-Csv $inputFile |
     # Select ('UPN' is added) what columns we are interested in for working with Microsoft O365 & Azure AD: 
     Select-object "UPN","Serial Number","Secret Key","Time Interval","Manufacturer","Model" |
     # Correct the sorting so that it is ascending order by authenticator serial number instead of random order:
