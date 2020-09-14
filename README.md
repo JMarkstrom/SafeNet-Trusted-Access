@@ -76,7 +76,7 @@ You will need to meet the following prequisites to make use of this script.
 * Administrator privileges on Office365 domain as well as Azure AD
 
 ## Usage
-Edit the script to correct source and output folders then run the script.
+Edit the script to correct source path and then run the script.
 NOTE: Before importing to Microsoft Azure you must add user UPN's to the 'UPN' column.
 
 ## Release History
