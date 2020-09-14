@@ -18,22 +18,40 @@
 # any kind, either expressed or implied.
 # ************************************************************************
 
-# Import a decrypted base32 seed file in CSV format:
-Import-Csv C:\seeds.csv |
-# Select ('UPN' is added) what columns we are interested in for working with Microsoft O365 & Azure AD: 
-Select-object "UPN","Serial Number","Secret Key","Time Interval","Manufacturer","Model" |
-# Correct the sorting so that it is ascending order by authenticator serial number instead of random order:
-Sort-Object "Serial Number" | 
-# Replace "GA" with "Thales" so that the customer has visibilty of the vendor in the Microsoft Azure AD portal:
-ForEach-Object {
+# This function gets called to create a new CSV file for Microsoft Azure AD:
+Function formatForAzure {
+    Import-Csv C:\seeds.csv |
+    # Select ('UPN' is added) what columns we are interested in for working with Microsoft O365 & Azure AD: 
+    Select-object "UPN","Serial Number","Secret Key","Time Interval","Manufacturer","Model" |
+    # Correct the sorting so that it is ascending order by authenticator serial number instead of random order:
+    Sort-Object "Serial Number" | 
+    # Replace "GA" with "Thales" so that the customer has visibilty of the vendor in the Microsoft Azure AD portal:
+    ForEach-Object {
+    # Replace "GA" with "Thales" so that the customer has visibility of the vendor in the Microsoft Azure AD portal:
     $_.Manufacturer = $_.Manufacturer -replace 'GA', 'Thales'
-    $_
-} | 
-# Also replace "LT" with "OTP110" so that the customer has visibilty of the model in the Microsoft Azure AD portal:
-ForEach-Object {
+    # Also replace "LT" with "OTP110" so that the customer has visibility of the model in the Microsoft Azure AD portal:
     $_.Model = $_.Model -replace 'LT', 'OTP110'
     $_
-} | 
-# Export our changes to a new file ready for import with Microsoft Azure AD:
-Export-Csv -Path "C:\correctedSeeds.csv" -NoTypeInformation
+}
+}
 
+# This function prompts the user to save the new CSV file created:
+Function Save-File ([string]$initialDirectory) {
+
+    [System.Reflection.Assembly]::LoadWithPartialName("System.windows.forms") | Out-Null
+    
+    $OpenFileDialog = New-Object System.Windows.Forms.SaveFileDialog
+    $OpenFileDialog.Title = "Save generated Microsoft Azure seed file as:"
+    $OpenFileDialog.initialDirectory = $SaveInitialPath
+    $OpenFileDialog.filter = "CSV (*.csv)| *.csv"
+	$OpenFileDialog.FileName = $SaveFileName
+    $OpenFileDialog.ShowDialog() | Out-Null
+    return $OpenFileDialog.filename
+}
+
+# Here we call the create CSV function and store it in a variable:
+$results = formatForAzure
+
+# Here we call the function to save the file prompting the user for location:
+$SaveMyFile = Save-File
+Write-Output $results | Export-CSV $SaveMyFile -NoTypeInformation
