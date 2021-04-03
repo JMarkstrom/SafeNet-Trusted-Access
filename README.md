@@ -71,13 +71,14 @@ is used, but the script can be easily modified to support the Thales OTP Display
 You will need to meet the following prequisites to make use of this script.
 
 * Powershell is present on machine
-* Physical access to Thales OTP110 hardware authenticators
-* Access to decrypted base32 seed file in csv format
+* Physical access to Thales OTP 110 hardware authenticators
+* Access to *decrypted* base32 seed file in csv format
 * Administrator privileges on Office365 domain as well as Azure AD
 
 ## Usage
-Edit the script to correct source path and then run the script.
+Simply run the script and follow the instructions
 NOTE: Before importing to Microsoft Azure you must add user UPN's to the 'UPN' column.
 
 ## Release History
 * 2020.09.13 `v1.0.0` Initial Release
+* 2021.04.03 `v1.1.0` Second Release
