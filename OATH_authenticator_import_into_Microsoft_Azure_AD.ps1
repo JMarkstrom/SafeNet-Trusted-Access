@@ -2,8 +2,8 @@
 ##########################################################################
 # OATH authenticator import into Microsoft Azure AD                        
 ##########################################################################
-# version: 1.1
-# last updated on: 2021-04-03 by Jonas Markström
+# version: 1.2
+# last updated on: 2021-06-04 by Jonas Markström
 # see readme.md for more info.
 #
 # NOTE: This script takes in the generic Thales authenticator seed file for 3rd
@@ -62,11 +62,11 @@ $results = Open-File
 
 # Reformat the selected file:
 $reformat = Import-Csv $results |
-# Select ('UPN' is added) what columns we are interested in for working with Microsoft O365 & Azure AD: 
+# Select ('UPN' is added) what columns we are interested in for working with Microsoft Azure AD: 
 Select-object "UPN", "Serial Number", "Secret Key", "Time Interval", "Manufacturer", "Model" |
-# Correct the sorting so that it is ascending order by authenticator serial number instead of random order:
+# Correct the sorting so that it is ascending order by authenticator serial number:
 Sort-Object "Serial Number" | 
-# Replace "GA" with "Thales" so that the customer has visibilty of the vendor in the Microsoft Azure AD portal:
+# Update make and model for customer visibility in the Microsoft Azure AD portal:
 ForEach-Object {
     # Replace "GA" with "Thales" so that the customer has visibility of the vendor in the Microsoft Azure AD portal:
     $_.Manufacturer = $_.Manufacturer -replace 'GA', 'Thales'
